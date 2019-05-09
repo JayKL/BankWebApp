@@ -1,13 +1,13 @@
 <html>
 <%@ page import="java.sql.*"%>
 <%@ include file="DriversFile.jsp" %>
+<%@ include file="websiteformat.jsp" %>
 
 <body>
 
 <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;">
 <Center>
 <h1>Admin Page</h1>
-<input value="adminlogout" type="button" onclick="parent.location='http://localhost:8080/Bank/logout.jsp'">
 </center>
 <%
 int serialnumber=1;
