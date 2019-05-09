@@ -9,6 +9,18 @@
 <%
 String usernamevar=request.getParameter("username");
 String passwordvar=request.getParameter("password");
+if (null==session.getAttribute("loggedin")){
+		session.setAttribute("loggedin",0);
+}
+if ((Integer)session.getAttribute("loggedin")==1){
+if (usernamevar==null){
+	usernamevar=(String)session.getAttribute("username");
+}
+if (passwordvar==null){
+	passwordvar=(String)session.getAttribute("password"); 
+}
+}
+
 try{
 	if (null==session.getAttribute("role")){
 		session.setAttribute("role",1);
@@ -41,7 +53,7 @@ try{
 						}
 					session.setAttribute("name",userrowfromusersounts.getString(2));
 					session.setAttribute("active",0);
-					out.println("you are dead");
+					out.println("you are blocked");
 				} else {
 					session.setAttribute("username",usernamevar);
 					if ((Integer)session.getAttribute("role")==2){
@@ -53,6 +65,8 @@ try{
 					
 					session.setAttribute("name",userrowfromusersounts.getString(2));
 					session.setAttribute("active",1);
+					session.setAttribute("loggedin",1);
+					session.setAttribute("password",passwordvar);
 					out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid black thin\">");
 					out.println("<center> Welcome to my bank!" + "</center>" + "<BR>");
 					out.println("<div style=\"float:left\">");
@@ -94,8 +108,6 @@ try{
 	out.println("<A href='http://localhost:8080/Bank/Index.html'> Serious error login failed go back </A>");
 	out.println("<div>");
 }
-
-
 
 
 %>

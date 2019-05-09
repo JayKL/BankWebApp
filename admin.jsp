@@ -23,7 +23,7 @@ try{
 			while (accountstable.next()){
 				ResultSet userstable=statementvar2.executeQuery("select password from users where AccNo='"+accountstable.getString(1)+"'");
 				userstable.next();
-				out.print("<TR><TD>"+serialnumber++ +"</TD><TD><A href='http://localhost:8080/Bank/login.jsp?username="+accountstable.getString(1)+"'>"+accountstable.getString(1)+"</A></TD><TD>"+accountstable.getString(2)+"</TD><TD>"+accountstable.getString(3)+"</TD><TD><A href=''>edit</A>,<A href=''>block</A>,<A href=''>delete</A>");
+				out.print("<TR><TD>"+serialnumber++ +"</TD><TD><A href='http://localhost:8080/Bank/Home.jsp?username="+accountstable.getString(1)+"'>"+accountstable.getString(1)+"</A></TD><TD>"+accountstable.getString(2)+"</TD><TD>"+accountstable.getString(3)+"</TD><TD><A href=''>edit</A>,<A href=''>block</A>,<A href=''>delete</A>");
 			}
 		} catch (Exception gener1){
 			out.println(gener1);
