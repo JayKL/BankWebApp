@@ -53,7 +53,9 @@ try{
 						}
 					session.setAttribute("name",userrowfromusersounts.getString(2));
 					session.setAttribute("active",0);
-					out.println("you are blocked");
+					%>
+					you are blocked
+					<%
 				} else {
 					session.setAttribute("username",usernamevar);
 					if ((Integer)session.getAttribute("role")==2){
@@ -67,44 +69,55 @@ try{
 					session.setAttribute("active",1);
 					session.setAttribute("loggedin",1);
 					session.setAttribute("password",passwordvar);
-					out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid black thin\">");
-					out.println("<center> Welcome to my bank!" + "</center>" + "<BR>");
-					out.println("<div style=\"float:left\">");
+					%>
+					<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin">
+					<center> <h2>Welcome to QA Banking Services </h2></center><BR>
+					<div style="float:left">
+					<%
 					out.println("AccountNo: " + userrowfromusers.getString(1) +"<BR>");
 					out.println("Name: " + userrowfromusersounts.getString(2) +"<BR>");
 					out.println("Address: " + userrowfromusersounts.getString(3) +"<BR> <BR>");
-					out.println("Transaction History: <BR>");
+					%>
+					Transaction History: <BR>
+					<%
+					
 					while (userrowfromtransactions.next()){
 						out.println("Amount:  "+userrowfromtransactions.getFloat(2)+"    Date: "+userrowfromtransactions.getString(3).substring(2,10)+"   Type: "+userrowfromtransactions.getString(4)+"<BR>");
 					}
-					out.println("<BR><BR>");
+					%>
+					<BR><BR>
+					<%
+					
 					out.println("Balance: " + checkbalance.getFloat(1));
-					out.println("</div>");
-					out.println("<div style=\"float:right\">");
-
+					%>
+					</div>
+					<div style="float:right">
+					<%
 						if ((Integer)session.getAttribute("role")==2){
 
 						} else{
-							out.println("<input type=\"button\" value=\"Deposit\" onclick=\"parent.location='http://localhost:8080/Bank/deposit.jsp?username="+usernamevar+"'\" style=\"margin-left:12px;margin-top:2px;margin-bot:2px\">"  +"<BR>");
-							out.println("<input type=\"button\" value=\"Withdraw\" onclick=\"parent.location='http://localhost:8080/Bank/withdraw.jsp?username="+usernamevar+"'\"  style=\"margin-left:12px;margin-top:2px;margin-bot:2px\" >"  +"<BR>");
+							out.println("<input type=\"button\" value=\"Deposit\" onclick=\"parent.location='http://localhost:8080/Bank/deposit.jsp?username="+usernamevar+"'\" style=\"color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px;margin-left:12px;margin-top:2px;margin-bot:2px\">"  +"<BR>");
+							out.println("<input type=\"button\" value=\"Withdraw\" onclick=\"parent.location='http://localhost:8080/Bank/withdraw.jsp?username="+usernamevar+"'\"  style=\"color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px;margin-left:12px;margin-top:2px;margin-bot:2px\" >"  +"<BR>");
 						}
-					out.println("</div>");
-					out.println("</div>");
+						%>
+					</div>
+					</div>
+					<%
 				}
 			}
 		} else {
-			out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid black thin\">");
+			out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin\">");
 			out.println("Password is wrong<BR><center><A href='http://localhost:8080/Bank/Index.html'> Return</A></center>");
 			out.println("<div>");
 		}
 	} else{
-			out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid black thin\">");
+			out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin\">");
 			out.println("Username is not in the system<BR><Center><A href='http://localhost:8080/Bank/Index.html'> Return</A></center>");
 			out.println("<div>");
 	}
 } catch (Exception gener1) {
 	//out.println(gener1);
-	out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid black thin\">");
+	out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin\">");
 	out.println("<A href='http://localhost:8080/Bank/Index.html'> Serious error login failed go back </A>");
 	out.println("<div>");
 }

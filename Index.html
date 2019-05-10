@@ -1,16 +1,36 @@
 <html>
 <body>
 
+<script>
+function formcheck(){
+var usernametf=window.document.indexform.username.value;
+var passwordtf=window.document.indexform.password.value;
+if (usernametf==""){
+	window.document.getElementById("textforcheck").innerHTML="username is missing";
+	return false;
+} else if ( passwordtf == ""){
+	window.document.getElementById("textforcheck").innerHTML="password is missing";
+	return false;
+} else{
+	window.document.getElementById("textforcheck").innerHTML="";
+}
 
+}
+</script>
 
-<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid black thin">
-<form action="http://localhost:8080/Bank/Home.jsp" method="post">
+<div style="position:fixed;top:2%;left:2%;transform:translate(%,%);">
+<img src="QAlogofinal.png" width="22%" height="8%" alt="Error 342" style="border:1px solid #0062AE">
+</div>
+
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin">
+<form name="indexform" action="http://localhost:8080/Bank/Home.jsp" onsubmit="return formcheck()" method="post">
 <center>
-
-Username: <input type="text" name="username" style="margin:3px;border: solid black thin"> <BR>
-Password: <input type="password" name="password" style="margin:3px;border: solid black thin"> <BR>
-<input type="submit">
-<input type="button" value="Create User" onclick="location.href='http://localhost:8080/Bank/createac.html'">
+<BR>
+Username: <input type="text" name="username" style="margin:3px;border: solid #0062AE thin"> <BR>
+Password: <input type="password" name="password" style="margin:3px;border: solid #0062AE thin"> <BR>
+<div id="textforcheck" style="color:red" ></div> <BR>
+<input type="submit" style="color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px">
+<input type="button" value="Create User" onclick="location.href='http://localhost:8080/Bank/createac.html'" style="color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px">
 </center>
 
 </form>

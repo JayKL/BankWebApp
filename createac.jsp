@@ -25,16 +25,17 @@ try{
 	strefvar3.executeUpdate(SQLinsertusers);
 }
 catch (Exception gener1){
-	out.println("general error 1 ->" + gener1.toString());
+	//out.println("general error 1 ->" + gener1.toString());
 }
-
-out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid black thin\">");
-out.println("Account created with username: "+accounttype+gendervar+accountnumber + "<BR>");
-out.println("<A href='http://localhost:8080/Bank/Index.html'> Return</A>");
-out.println("</div>");
-
 %>
-
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin"><BR>
+<%
+out.println("Account created with username: "+accounttype+gendervar+accountnumber + "<BR>");
+%>
+<center> <BR>
+<input type="button" value="Login" onclick="location.href='http://localhost:8080/Bank/Index.html'" style="color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px">
+</center><BR>
+</div>
 
 </body>
 </html>

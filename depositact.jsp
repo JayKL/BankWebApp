@@ -23,7 +23,7 @@ if (withordep.equals("W")) withordeptext="Withdraw";
 try{
 
 	if ((Integer)session.getAttribute("role")==2){
-		out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid black thin\">");
+		out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin\">");
 		out.println("access denied admin cannot deposit");
 		out.println("</div>");
 	}else{
@@ -39,7 +39,7 @@ try{
 				ResultSet checkbalance = statementvar1.executeQuery("SELECT (select ifnull(sum(Amount),0) as sum from transactions where Accno='"+usernamevar+"' and Type ='D') -(select ifnull(sum(Amount),0) as sum from transactions where Accno='"+usernamevar+"' and Type ='W') as result");
 				checkbalance.next();
 				
-				out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid black thin\">");
+				out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin\">");
 				out.println("<center>");
 				out.println(withordeptext+" Successful <BR>");
 				out.println("Old Balance: "+checkbalance2.getFloat(1)+"<BR>");
@@ -48,19 +48,19 @@ try{
 				out.println("</div>");
 			
 			} else{
-				out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid black thin\">");
+				out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin\">");
 				out.println("Insufficient funds");
 				out.println("</div>");
 			}
 		} else{
-			out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid black thin\">");
+			out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin\">");
 			out.println("access denied");
 			out.println("</div>");
 		}
 	}
 } catch (Exception gener1){
 	//out.println(gener1);
-	out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid black thin\">");
+	out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin\">");
 	out.println("<A href='http://localhost:8080/Bank/Index.html'> Serious error</A>");
 	out.println("<div>");
 }
