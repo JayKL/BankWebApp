@@ -23,9 +23,11 @@ if (withordep.equals("W")) withordeptext="Withdraw";
 try{
 
 	if ((Integer)session.getAttribute("role")==2){
-		out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin\">");
-		out.println("access denied admin cannot deposit");
-		out.println("</div>");
+		%>
+		<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin">
+		access denied admin cannot deposit
+		</div>
+		<%
 	}else{
 		if (session.getAttribute("username").equals(usernamevar)){
 			Statement statementvarcheckbal = connectionvar.createStatement();
@@ -38,24 +40,34 @@ try{
 				statementvar2.executeUpdate("INSERT INTO transactions (Accno,Amount,Date,Type) values ('"+usernamevar+"','"+amounttoins+"',now(),'"+withordep+"')"); 
 				ResultSet checkbalance = statementvar1.executeQuery("SELECT (select ifnull(sum(Amount),0) as sum from transactions where Accno='"+usernamevar+"' and Type ='D') -(select ifnull(sum(Amount),0) as sum from transactions where Accno='"+usernamevar+"' and Type ='W') as result");
 				checkbalance.next();
+				%>
 				
-				out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin\">");
-				out.println("<center>");
-				out.println(withordeptext+" Successful <BR>");
-				out.println("Old Balance: "+checkbalance2.getFloat(1)+"<BR>");
-				out.println("New Balance: "+checkbalance.getFloat(1)+"<BR>");
-				out.println("</center>");
-				out.println("</div>");
+				<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin">
+				<center>
+				<BR>
+				<%=withordeptext%> Successful <BR> <BR>
+				Old Balance: <%=checkbalance2.getFloat(1)%> <BR> <BR>
+				New Balance: <%=checkbalance.getFloat(1)%> <BR> <BR>
+				<input type="button" value="Go Back" onclick="location.href='http://localhost:8080/Bank/Home.jsp'" style="color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px">
+				<BR> <BR>
+				</center>
+				
+				</div>
+				<%
 			
 			} else{
-				out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin\">");
-				out.println("Insufficient funds");
-				out.println("</div>");
+				%>
+				<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin">
+				Insufficient funds
+				</div>
+				<%
 			}
 		} else{
-			out.println("<div style=\"position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin\">");
-			out.println("access denied");
-			out.println("</div>");
+			%>
+			<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin">
+			access denied
+			</div>
+			<%
 		}
 	}
 } catch (Exception gener1){

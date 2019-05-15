@@ -15,7 +15,14 @@ if (null==session.getAttribute("loggedin")){
 if ((Integer)session.getAttribute("loggedin")==1){
 if (usernamevar==null){
 	usernamevar=(String)session.getAttribute("username");
+} else {
+	if (usernamevar.equals((String)session.getAttribute("username"))){
+	} else{
+		usernamevar="DENIED";
+	}
 }
+
+
 if (passwordvar==null){
 	passwordvar=(String)session.getAttribute("password"); 
 }
