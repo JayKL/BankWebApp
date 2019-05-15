@@ -44,7 +44,16 @@ try{
 	} else if (operationvar.equals("E")){
 		%>
 		<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin">
-		EDIT PAGE
+		<center>
+		<h3> ADMIN EDIT PAGE </h3>
+		<form name="editform" action="http://localhost:8080/Bank/Edit.jsp" method="post" >
+		Username: <input type="text" name="usernameedit" style="margin:3px;border: solid #0062AE thin"> <BR>
+		Password: <input type="text" name="passwordedit" style="margin:3px;border: solid #0062AE thin"> <BR>
+		Address: <input type="text" name="passwordedit" style="margin:3px;border: solid #0062AE thin"> <BR> <BR>
+		<input type="submit" style="color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px">
+
+		</form>
+		</center>
 		</div>
 		<%
 	}
