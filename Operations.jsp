@@ -41,9 +41,19 @@ try{
 			statementvar5.executeUpdate("UPDATE users SET Active= 1 WHERE Accno='"+usernamevar+"'");
 		}
 		response.sendRedirect("admin.jsp");
+	} else if (operationvar.equals("E")){
+		%>
+		<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin">
+		EDIT PAGE
+		</div>
+		<%
 	}
 	}else {
-		out.print("Access Denied");
+				%>
+		<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin">
+		ACCESS DENIED
+		</div>
+		<%
 	}
 	
 }catch (Exception gener1){

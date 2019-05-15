@@ -2,6 +2,11 @@
 <%@ page import="java.sql.*"%>
 
 <body>
+
+<div style="position:fixed;top:2%;left:2%;transform:translate(%,%);">
+<img src="QAlogofinal.png" width="22%" height="8%" alt="Error 342" style="border:1px solid #0062AE">
+</div>
+
 <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin">
 
 User logged out <BR> <BR>

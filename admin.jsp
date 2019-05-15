@@ -36,7 +36,7 @@ try{
 					block="unblock";
 				}
 				%>
-				<TR><TD><%= serialnumber++ %></TD><TD><A href='http://localhost:8080/Bank/Home.jsp?username=<%=accountstable.getString(1)%>' ><%= accountstable.getString(1) %></A></TD><TD><%= accountstable.getString(2) %></TD><TD><%= accountstable.getString(3) %></TD><TD><A href=''>edit</A>,<A href='http://localhost:8080/Bank/Operations.jsp?operation=B&username=<%=accountstable.getString(1)%>'><%=block%></A>,<A href='http://localhost:8080/Bank/Operations.jsp?operation=D&username=<%=accountstable.getString(1)%>'>delete</A>
+				<TR><TD><%= serialnumber++ %></TD><TD><A href='http://localhost:8080/Bank/Home.jsp?username=<%=accountstable.getString(1)%>' ><%= accountstable.getString(1) %></A></TD><TD><%= accountstable.getString(2) %></TD><TD><%= accountstable.getString(3) %></TD><TD><A href='http://localhost:8080/Bank/Operations.jsp?operation=E&username=<%=accountstable.getString(1)%>'>edit</A>,<A href='http://localhost:8080/Bank/Operations.jsp?operation=B&username=<%=accountstable.getString(1)%>'><%=block%></A>,<A href='http://localhost:8080/Bank/Operations.jsp?operation=D&username=<%=accountstable.getString(1)%>'>delete</A>
 				<%
 			}
 			%>

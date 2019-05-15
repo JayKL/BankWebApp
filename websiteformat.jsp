@@ -31,21 +31,24 @@
 </span >
 <span id="visspan" style="visibility:hidden" >
 <%
+String homeadmin="";
 if (null==session.getAttribute("role")){
 	session.setAttribute("role",1);
 } 
 if ((Integer)session.getAttribute("role")==2){
+	homeadmin="Admin Page";
 	%>
 	<div id="home"  onclick="parent.location='http://localhost:8080/Bank/admin.jsp'" onmouseover="mouseentermenui('home')" onmouseleave="mouseleavemenui('home')" style="color:#0062AE;background-color:white;font-size:16pt;height:14%;width:25%;  border: solid #0062AE thin">
 	<%
 }else{
+	homeadmin="Home";
 	%>
 	<div id="home"  onclick="parent.location='http://localhost:8080/Bank/Home.jsp'" onmouseover="mouseentermenui('home')" onmouseleave="mouseleavemenui('home')" style="color:#0062AE;background-color:white;font-size:16pt;height:14%;width:25%;  border: solid #0062AE thin">
 <%
 }
 %>
 <center>
-Home
+<%=homeadmin%>
 </center>
 </div>
 <div id="logout" onclick="parent.location='http://localhost:8080/Bank/logout.jsp'" onmouseover="mouseentermenui('logout')" onmouseleave="mouseleavemenui('logout')" style="color:#0062AE;background-color:white;font-size:16pt;height:14%;width:25%; border: solid #0062AE thin">
