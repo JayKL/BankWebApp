@@ -73,24 +73,31 @@ try{
 					<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin">
 					<center> <h2>Welcome to QA Banking Services </h2></center><BR>
 					<div style="float:left">
-					<%
-					out.println("AccountNo: " + userrowfromusers.getString(1) +"<BR>");
-					out.println("Name: " + userrowfromusersounts.getString(2) +"<BR>");
-					out.println("Address: " + userrowfromusersounts.getString(3) +"<BR> <BR>");
-					%>
-					Transaction History: <BR>
-					<%
 					
+					AccountNo: <%=userrowfromusers.getString(1) %><BR>
+					Name: <%=userrowfromusersounts.getString(2) %><BR>
+					Address: <%=userrowfromusersounts.getString(3) %><BR> <BR>
+			
+								Balance: <%=checkbalance.getFloat(1)%> <BR> <BR>
+
+			
+					Transaction History: <BR>
+					<div style="overflow:auto;height:200px;">
+					<Table Border='0'>
+					<TR><TD>Amount</TD><TD align="center">Date</TD><TD>Type</TD>
+					<%
 					while (userrowfromtransactions.next()){
-						out.println("Amount:  "+userrowfromtransactions.getFloat(2)+"    Date: "+userrowfromtransactions.getString(3).substring(2,10)+"   Type: "+userrowfromtransactions.getString(4)+"<BR>");
+						%>
+						<TR><TD><%=userrowfromtransactions.getFloat(2) %> </TD> <TD> <%=userrowfromtransactions.getString(3).substring(2,10) %> </TD> <TD align="right"> <%= userrowfromtransactions.getString(4) %></TD></TR>
+						<%
 					}
 					%>
-					<BR><BR>
-					<%
-					
-					out.println("Balance: " + checkbalance.getFloat(1));
-					%>
+					</Table>
 					</div>
+					
+				
+					</div>
+					
 					<div style="float:right">
 					<%
 						if ((Integer)session.getAttribute("role")==2){

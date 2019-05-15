@@ -11,20 +11,37 @@
 </center>
 <%
 int serialnumber=1;
+String block="";
 try{
+	if (null==session.getAttribute("role")){
+		session.setAttribute("role",1);
+	} 
 	if ((Integer)session.getAttribute("role")==2) {
 		try{
 
 			Statement statementvar1 = connectionvar.createStatement();
 			Statement statementvar2 = connectionvar.createStatement();
 			ResultSet accountstable=statementvar1.executeQuery("select * from accounts");
-			out.print("<Table Border='1'>");
-			out.print("<TR><TD>S.No</TD><TD>AccNo</TD><TD>Name</TD><TD>Address</TD><TD>Operations</TD>");
+			%>
+			<div style="overflow:auto;height:200px;">
+			<Table Border='0'>
+			<TR><TD>S.No</TD><TD>AccNo</TD><TD>Name</TD><TD>Address</TD><TD>Operations</TD>
+			<%
 			while (accountstable.next()){
-				ResultSet userstable=statementvar2.executeQuery("select password from users where AccNo='"+accountstable.getString(1)+"'");
+				ResultSet userstable=statementvar2.executeQuery("select password,active from users where AccNo='"+accountstable.getString(1)+"'");
 				userstable.next();
-				out.print("<TR><TD>"+serialnumber++ +"</TD><TD><A href='http://localhost:8080/Bank/Home.jsp?username="+accountstable.getString(1)+"'>"+accountstable.getString(1)+"</A></TD><TD>"+accountstable.getString(2)+"</TD><TD>"+accountstable.getString(3)+"</TD><TD><A href=''>edit</A>,<A href=''>block</A>,<A href=''>delete</A>");
+				if (userstable.getString(2).equals("1")){
+					block="block";
+				} else {
+					block="unblock";
+				}
+				%>
+				<TR><TD><%= serialnumber++ %></TD><TD><A href='http://localhost:8080/Bank/Home.jsp?username=<%=accountstable.getString(1)%>' ><%= accountstable.getString(1) %></A></TD><TD><%= accountstable.getString(2) %></TD><TD><%= accountstable.getString(3) %></TD><TD><A href=''>edit</A>,<A href='http://localhost:8080/Bank/Operations.jsp?operation=B&username=<%=accountstable.getString(1)%>'><%=block%></A>,<A href='http://localhost:8080/Bank/Operations.jsp?operation=D&username=<%=accountstable.getString(1)%>'>delete</A>
+				<%
 			}
+			%>
+			</div>
+			<%
 		} catch (Exception gener1){
 			out.println(gener1);
 		}

@@ -32,6 +32,7 @@ try{
 			out.println("Deposit Amount: <input type=\"number\" min=\"0\" name=\"amount\" style=\"margin:3px;border: solid #0062AE thin\"> <BR> <BR>");
 			out.println("Current Balance: "+checkbalance.getFloat(1)+"<BR>");
 			%><BR>
+			<input type="button" value="Go Back" onclick="location.href='http://localhost:8080/Bank/Home.jsp'" style="color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px">
 			<input type="submit"  style="color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px" >
 			</center>
 			</form>
