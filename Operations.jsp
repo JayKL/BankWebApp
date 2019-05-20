@@ -3,7 +3,33 @@
 <%@ include file="websiteformat.jsp" %>
 
 <body>
+<script>
+function formcheckeditaddress(){
+	let addresstf=window.document.editformaddress.addressedit.value;
 
+
+	if ( addresstf===""){
+		window.document.getElementById("textforcheck").innerHTML="address is missing";
+		return false;
+	}else {
+
+	}
+
+}
+function formcheckeditpw(){
+	let passwordtf=window.document.editformpw.passwordedit.value;
+	let passwordchecktf=window.document.editformpw.passwordreedit.value;
+	
+	if ( passwordtf===""){
+		window.document.getElementById("textforcheck2").innerHTML="password is missing";
+		return false;
+	}else if (passwordtf!=passwordchecktf) {
+		window.document.getElementById("textforcheck2").innerHTML="passwords do not match";
+		return false;
+	}
+}
+
+</script>
 <%
 try{
 	String operationvar=request.getParameter("operation");
@@ -19,26 +45,23 @@ try{
 		Statement statementvar4 = connectionvar.createStatement();
 		Statement statementvar5 = connectionvar.createStatement();
 		Statement statementvar6 = connectionvar.createStatement();
-		Statement statementvar7 = connectionvar.createStatement();
-		Statement statementvar8 = connectionvar.createStatement();
 
 		ResultSet userrowfromusers = statementvar.executeQuery("select * from users where Accno='"+usernamevar+"'");
-		ResultSet userrowfromusersounts = statementvar2.executeQuery("select * from accounts where Accno='"+usernamevar+"'");
-		ResultSet userrowfromtransactions = statementvar3.executeQuery("select * from transactions where Accno='"+usernamevar+"'");
+		
+		
 		userrowfromusers.next();
-		userrowfromusersounts.next();
-		userrowfromtransactions.next();
+
 		if (operationvar.equals("D")){
-			statementvar6.executeUpdate("DELETE FROM users WHERE Accno='"+usernamevar+"'");
-			statementvar7.executeUpdate("DELETE FROM accounts WHERE Accno='"+usernamevar+"'");
-			statementvar8.executeUpdate("DELETE FROM transactions WHERE Accno='"+usernamevar+"'");
+			statementvar4.executeUpdate("DELETE FROM users WHERE Accno='"+usernamevar+"'");
+			statementvar5.executeUpdate("DELETE FROM accounts WHERE Accno='"+usernamevar+"'");
+			statementvar6.executeUpdate("DELETE FROM transactions WHERE Accno='"+usernamevar+"'");
 
 			response.sendRedirect("admin.jsp");
 	} else if (operationvar.equals("B")){
 		if (userrowfromusers.getString(4).equals("1")){
-			statementvar4.executeUpdate("UPDATE users SET Active= 0 WHERE Accno='"+usernamevar+"'");
+			statementvar2.executeUpdate("UPDATE users SET Active= 0 WHERE Accno='"+usernamevar+"'");
 		} else {
-			statementvar5.executeUpdate("UPDATE users SET Active= 1 WHERE Accno='"+usernamevar+"'");
+			statementvar3.executeUpdate("UPDATE users SET Active= 1 WHERE Accno='"+usernamevar+"'");
 		}
 		response.sendRedirect("admin.jsp");
 	} else if (operationvar.equals("E")){
@@ -46,11 +69,18 @@ try{
 		<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%); padding:10px;border: solid #0062AE thin">
 		<center>
 		<h3> ADMIN EDIT PAGE </h3>
-		<form name="editform" action="http://localhost:8080/Bank/Edit.jsp" method="post" >
-		Username: <input type="text" name="usernameedit" style="margin:3px;border: solid #0062AE thin"> <BR>
-		Password: <input type="text" name="passwordedit" style="margin:3px;border: solid #0062AE thin"> <BR>
-		Address: <input type="text" name="passwordedit" style="margin:3px;border: solid #0062AE thin"> <BR> <BR>
+		<form name="editformaddress" action="http://localhost:8080/Bank/Editaddress.jsp?username=<%= usernamevar %>" onsubmit="return formcheckeditaddress()" method="post" >
+		Username: <input type="text" value="<%=usernamevar%>" name="usernameedit" style="margin:3px;border: solid #0062AE thin" readonly> <BR>
+		Address: <input type="text" name="addressedit" style="margin:3px;border: solid #0062AE thin"> <BR> 
+		<div id="textforcheck" style="color:red" ></div><BR>
 		<input type="submit" style="color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px">
+
+		</form>
+		<form name="editformpw" action="http://localhost:8080/Bank/Editpw.jsp?username=<%= usernamevar %>" onsubmit="return formcheckeditpw()" method="post" >
+		Password: <input type="password" name="passwordedit" style="margin:3px;border: solid #0062AE thin"> <BR>
+		Re-Type Password: <input type="password" name="passwordreedit" style="margin:3px;border: solid #0062AE thin"> <BR><BR>
+		<input type="submit" style="color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px">
+		<div id="textforcheck2" style="color:red" ></div><BR>
 
 		</form>
 		</center>

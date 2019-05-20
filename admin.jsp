@@ -25,7 +25,7 @@ try{
 			%>
 			<div style="overflow:auto;height:200px;">
 			<Table Border='0'>
-			<TR><TD>S.No</TD><TD>AccNo</TD><TD>Name</TD><TD>Address</TD><TD>Operations</TD>
+			<TR><TD>S.No</TD><TD>AccNo</TD><TD align="center">Name</TD><TD align="center" >Address</TD><TD align="center" >Operations</TD>
 			<%
 			while (accountstable.next()){
 				ResultSet userstable=statementvar2.executeQuery("select password,active from users where AccNo='"+accountstable.getString(1)+"'");

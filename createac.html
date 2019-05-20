@@ -2,14 +2,16 @@
 <body>
 <script>
 function formcheck(){
-var nametf=window.document.createaccform.name.value;
-var addresstf=window.document.createaccform.address.value;
-var passwordtf=window.document.createaccform.password.value;
+let nametf=window.document.createaccform.name.value;
+let addresstf=window.document.createaccform.address.value;
+let passwordtf=window.document.createaccform.password.value;
+let passwordchecktf=window.document.createaccform.passwordretype.value;
 
-if (nametf==""){
+
+if (nametf===""){
 	window.document.getElementById("textforcheck").innerHTML="name is missing";
 	return false;
-} else if ( addresstf == ""){
+} else if ( addresstf===""){
 	window.document.getElementById("textforcheck").innerHTML="address is missing";
 	return false;
 } else if (!(window.document.getElementById("male").checked==true | window.document.getElementById("female").checked==true | window.document.getElementById("nonbin").checked==true)){
@@ -18,10 +20,13 @@ if (nametf==""){
 } else if (!(window.document.getElementById("current").checked==true | window.document.getElementById("savings").checked==true)){
 	window.document.getElementById("textforcheck").innerHTML="account type missing";
 	return false;
-} else if (passwordtf==""){
+} else if (passwordtf===""){
 	window.document.getElementById("textforcheck").innerHTML="password is missing";
 	return false;
-} else {
+} else if (passwordtf!=passwordchecktf){
+	window.document.getElementById("textforcheck").innerHTML="passwords do not match";
+	return false;
+}else {
 
 }
 
@@ -41,6 +46,7 @@ Address: <input type="text" name="address" style="margin:3px;border: solid #0062
 Male <input id="male" type="radio" name="gender" value="M"> Female <input id="female" type="radio" name="gender" value="F"> Non-Binary <input id="nonbin" type="radio" name="gender" value="X"><BR>
 Current <input id="current" type="radio" name="accounttype" value="C"> Savings <input id="savings" type="radio" name="accounttype" value="S"><BR>
 Password: <input type="password" name="password" style="margin:3px;border: solid #0062AE thin"> <BR>
+Re-Type Password: <input type="password" name="passwordretype" style="margin:3px;border: solid #0062AE thin"> <BR>
 <div id="textforcheck" style="color:red" ></div><BR>
 <input type="button" value="Go Back" onclick="location.href='http://localhost:8080/Bank/Index.html'" style="color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px">
 <input type="submit" style="color:white;border:1px solid #0062AE ;background-color: #0062AE;border-radius:4px">
